@@ -1,0 +1,150 @@
+USE [master]
+GO
+/****** Object:  Database [tienda]    Script Date: 22/04/2023 10:50:49 p. m. ******/
+CREATE DATABASE [tienda]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'tienda', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\tienda.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'tienda_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\tienda_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [tienda] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [tienda].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [tienda] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [tienda] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [tienda] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [tienda] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [tienda] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [tienda] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [tienda] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [tienda] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [tienda] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [tienda] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [tienda] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [tienda] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [tienda] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [tienda] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [tienda] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [tienda] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [tienda] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [tienda] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [tienda] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [tienda] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [tienda] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [tienda] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [tienda] SET RECOVERY FULL 
+GO
+ALTER DATABASE [tienda] SET  MULTI_USER 
+GO
+ALTER DATABASE [tienda] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [tienda] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [tienda] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [tienda] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [tienda] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [tienda] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'tienda', N'ON'
+GO
+ALTER DATABASE [tienda] SET QUERY_STORE = OFF
+GO
+USE [tienda]
+GO
+/****** Object:  Table [dbo].[fabricante]    Script Date: 22/04/2023 10:50:49 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[fabricante](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[nombre] [varchar](100) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[producto]    Script Date: 22/04/2023 10:50:49 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[producto](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[nombre] [varchar](100) NOT NULL,
+	[precio] [float] NULL,
+	[id_fabricante] [int] NULL,
+	[disponible] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[fabricante] ON 
+
+INSERT [dbo].[fabricante] ([id], [nombre]) VALUES (1, N'Asus')
+INSERT [dbo].[fabricante] ([id], [nombre]) VALUES (2, N'Lenovo')
+INSERT [dbo].[fabricante] ([id], [nombre]) VALUES (3, N'Hewlett-Packard')
+INSERT [dbo].[fabricante] ([id], [nombre]) VALUES (4, N'Samsung')
+INSERT [dbo].[fabricante] ([id], [nombre]) VALUES (5, N'Seagate')
+INSERT [dbo].[fabricante] ([id], [nombre]) VALUES (6, N'Crucial')
+INSERT [dbo].[fabricante] ([id], [nombre]) VALUES (7, N'Gigabyte')
+INSERT [dbo].[fabricante] ([id], [nombre]) VALUES (8, N'Huaweii')
+INSERT [dbo].[fabricante] ([id], [nombre]) VALUES (9, N'Xiaomi')
+SET IDENTITY_INSERT [dbo].[fabricante] OFF
+GO
+SET IDENTITY_INSERT [dbo].[producto] ON 
+
+INSERT [dbo].[producto] ([id], [nombre], [precio], [id_fabricante], [disponible]) VALUES (1, N'Disco duro SATA3 1TB', 86.99, 5, 5)
+INSERT [dbo].[producto] ([id], [nombre], [precio], [id_fabricante], [disponible]) VALUES (2, N'Memoria RAM DDR4 8GB', 120, 6, 4)
+INSERT [dbo].[producto] ([id], [nombre], [precio], [id_fabricante], [disponible]) VALUES (3, N'Disco SSD 1 TB', 150.99000549316406, 4, 10)
+INSERT [dbo].[producto] ([id], [nombre], [precio], [id_fabricante], [disponible]) VALUES (4, N'GeForce GTX 1050Ti', 185, 7, 3)
+INSERT [dbo].[producto] ([id], [nombre], [precio], [id_fabricante], [disponible]) VALUES (5, N'GeForce GTX 1080 Xtreme', 755, 6, 15)
+INSERT [dbo].[producto] ([id], [nombre], [precio], [id_fabricante], [disponible]) VALUES (6, N'Monitor 24 LED Full HD', 202, 1, 13)
+INSERT [dbo].[producto] ([id], [nombre], [precio], [id_fabricante], [disponible]) VALUES (7, N'Monitor 27 LED Full HD', 245.99000549316406, 1, 17)
+INSERT [dbo].[producto] ([id], [nombre], [precio], [id_fabricante], [disponible]) VALUES (8, N'Portátil Yoga 520', 559, 2, 19)
+INSERT [dbo].[producto] ([id], [nombre], [precio], [id_fabricante], [disponible]) VALUES (9, N'Portátil Ideapd 320', 444, 2, 15)
+INSERT [dbo].[producto] ([id], [nombre], [precio], [id_fabricante], [disponible]) VALUES (10, N'Impresora HP Deskjet 3720', 59.9900016784668, 3, 20)
+INSERT [dbo].[producto] ([id], [nombre], [precio], [id_fabricante], [disponible]) VALUES (12, N'P50 Pro', 3200, 8, 10)
+SET IDENTITY_INSERT [dbo].[producto] OFF
+GO
+ALTER TABLE [dbo].[producto]  WITH CHECK ADD FOREIGN KEY([id_fabricante])
+REFERENCES [dbo].[fabricante] ([id])
+GO
+USE [master]
+GO
+ALTER DATABASE [tienda] SET  READ_WRITE 
+GO
