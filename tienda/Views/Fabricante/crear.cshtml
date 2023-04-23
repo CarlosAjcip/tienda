@@ -1,0 +1,17 @@
+﻿@model fabricante
+@{
+    ViewData["Title"] = "Fabricante";
+}
+
+<!-- Button trigger modal -->
+<form asp-action="Crear">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="mb-3">
+        <label asp-for="nombre" class="col-form-label">Nombre</label>
+        <input autocomplete="off" asp-for="nombre" type="text" class="form-control" id="recipient-name">
+        <span asp-validation-for="nombre" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+<br />
+<button asp-action="Index" class="btn btn-danger">Volver</button>

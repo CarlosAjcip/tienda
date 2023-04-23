@@ -1,0 +1,24 @@
+﻿@model fabricante
+@{
+    ViewData["Title"] = "Editar Fabricante";
+}
+
+<h1>Editar Fabricante</h1>
+
+<h5>
+    Fabricante se cambiara el nombre pero siempre los poductos tendran relacion...
+</h5>
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly"></div>
+    <input type="hidden" asp-for="id"/>
+
+    <div class="mb-3">
+        <label asp-for="nombre" class="form-label">Nombre</label>
+        <input asp-for="nombre" class="form-control" />
+        <span asp-validation-for="nombre" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<fabricante>
+@{
+    ViewData["Title"] = "Control";
+}
+<a asp-action="crear" class="btn btn-primary">N. Fabricante</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.id
+                </td>
+
+                <td>
+                    <a asp-action="Detalle" asp-route-id="@item.id">@item.nombre</a>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-outline-danger">
+                        <i class="bi bi-trash3"></i>
+                    </a>
+                </td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@item.id" class="btn btn-primary">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
